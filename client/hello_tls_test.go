@@ -56,7 +56,7 @@ func TestTlsHelloClient(t *testing.T) {
 
 	resp, err := d.SayHello(ctx, &pb.HelloRequest{Name: "client tls"})
 	if err != nil {
-		log.Fatalf("could not get cnc info: %v", err)
+		log.Fatalf("could not get info: %v", err)
 	}
 	log.Printf("GetInfo string: %s", resp.Message)
 }
