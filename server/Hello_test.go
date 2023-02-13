@@ -15,7 +15,7 @@ func TestHello(t *testing.T) {
 	pb.RegisterGreeterServer(server, &HelloServer{})
 
 	// 监听端口
-	lis, err := net.Listen("tcp", "127.0.0.1:50051")
+	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
 		log.Fatalf("net.Listen err: %v", err)
 	}

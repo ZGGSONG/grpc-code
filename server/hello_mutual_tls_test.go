@@ -51,5 +51,7 @@ func TestHelloMutualTlsServer(t *testing.T) {
 	pb.RegisterGreeterServer(s, &HelloServer{})
 
 	//gRPC Server 开始 lis.Accept，直到 Stop 或 GracefulStop
-	s.Serve(lis)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }

@@ -16,9 +16,9 @@ openssl genrsa -out ca.key 4096
 ```shell
 openssl req -new -sha256 -out ca.csr -key ca.key -config ca.conf
 ```
-> openssl req：生成自签名证书，-new指生成证书请求、-sha256指使用sha256加密、-key指定私钥文件、-x509指输出证书、-days 3650为有效期，此后则输入证书拥有者信息
 
 3.生成根证书
+> openssl req：生成自签名证书，-new指生成证书请求、-sha256指使用sha256加密、-key指定私钥文件、-x509指输出证书、-days 3650为有效期，此后则输入证书拥有者信息
 
 ```shell
 openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt

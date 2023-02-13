@@ -26,5 +26,7 @@ func TestHelloServerSideTlsServer(t *testing.T) {
 
 	pb.RegisterGreeterServer(s, &HelloServer{})
 
-	s.Serve(lis)
+	if err := s.Serve(lis); err != nil {
+		log.Fatalf("failed to serve: %v", err)
+	}
 }
