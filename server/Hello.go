@@ -10,5 +10,5 @@ type HelloServer struct {
 }
 
 func (s *HelloServer) SayHello(ctx context.Context, req *pb.HelloRequest) (*pb.HelloReply, error) {
-	return &pb.HelloReply{Message: "say hello" + req.Name}, nil
+	return &pb.HelloReply{Message: "(Server SayHello) " + req.Name}, nil
 }

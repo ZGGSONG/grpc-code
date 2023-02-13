@@ -1,0 +1,40 @@
+## 服务端TLS(server-side tls)
+
+1.生成ca私钥
+
+```shell
+openssl genrsa -out ca.key 4096
+```
+
+2.生成ca证书签发请求，得到ca.csr
+
+```shell
+openssl req -new -sha256 -out ca.csr -key ca.key -config ca.conf
+```
+> openssl req：生成自签名证书，-new指生成证书请求、-sha256指使用sha256加密、-key指定私钥文件、-x509指输出证书、-days 3650为有效期，此后则输入证书拥有者信息
+
+3.生成根证书
+
+```shell
+openssl x509 -req -days 3650 -in ca.csr -signkey ca.key -out ca.crt
+```
+
+4.Server端生成私钥
+
+```shell
+openssl genrsa -out server.key 2048
+```
+
+5.生成证书签发请求
+
+```shell
+openssl req -new -sha256 -out server.csr -key server.key -config server.conf
+```
+
+6.使用ca证书签发服务端证书
+
+```shell
+openssl x509 -req -days 3650 -CA ca.crt -CAkey ca.key -CAcreateserial -in server.csr -out server.pem -extensions req_ext -extfile server.conf
+```
+
+## 双向TLS(mutual tls)
